@@ -55,6 +55,7 @@ impl Vec2 {
         let v = self.dot(other) / (self.magnitude() * other.magnitude());
         let angle = v.acos();
 
+        println!("{}", v);
         if v <= 0.0 {
             PI - angle
         } else {
