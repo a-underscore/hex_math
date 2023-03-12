@@ -56,7 +56,7 @@ impl Vec2 {
         let angle = v.acos();
 
         if v <= -1.0 {
-            angle - PI
+            PI + angle
         } else {
             angle
         }
