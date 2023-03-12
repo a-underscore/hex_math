@@ -18,7 +18,7 @@ impl Mat3 {
         Self([[cos, -sin, 0.0], [sin, cos, 0.0], [0.0, 0.0, 1.0]])
     }
 
-    pub fn scale(scale: Vec2) -> Self {
+    pub fn scale(scale: &Vec2) -> Self {
         Self([
             [scale.x(), 0.0, 0.0],
             [0.0, scale.y(), 0.0],
@@ -26,7 +26,7 @@ impl Mat3 {
         ])
     }
 
-    pub fn translation(translation: Vec2) -> Self {
+    pub fn translation(translation: &Vec2) -> Self {
         Self([
             [1.0, 0.0, translation.x()],
             [0.0, 1.0, translation.y()],

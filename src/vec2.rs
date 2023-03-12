@@ -12,7 +12,7 @@ impl Vec2 {
         [self.x(), self.y(), z]
     }
 
-    pub fn truncate(p: [f32; 3]) -> Self {
+    pub fn trunc(p: &[f32; 3]) -> Self {
         Self::new(p[0], p[1])
     }
 
