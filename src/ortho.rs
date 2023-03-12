@@ -1,3 +1,5 @@
+use std::ops::Mul;
+
 #[derive(Default, Copy, Clone)]
 pub struct Ortho(pub [[f32; 4]; 4]);
 
@@ -14,5 +16,30 @@ impl Ortho {
                 1.0,
             ],
         ])
+    }
+}
+
+impl Mul<[f32; 4]> for Ortho {
+    type Output = [f32; 4];
+
+    fn mul(self, rhs: [f32; 4]) -> [f32; 4] {
+        [
+            self.0[0][0] * rhs[0]
+                + self.0[0][1] * rhs[1]
+                + self.0[0][2] * rhs[2]
+                + self.0[3][3] * rhs[3],
+            self.0[1][0] * rhs[0]
+                + self.0[1][1] * rhs[1]
+                + self.0[1][2] * rhs[2]
+                + self.0[3][3] * rhs[3],
+            self.0[2][0] * rhs[0]
+                + self.0[2][1] * rhs[1]
+                + self.0[2][2] * rhs[2]
+                + self.0[3][3] * rhs[3],
+            self.0[3][0] * rhs[0]
+                + self.0[3][1] * rhs[1]
+                + self.0[3][2] * rhs[2]
+                + self.0[3][3] * rhs[3],
+        ]
     }
 }

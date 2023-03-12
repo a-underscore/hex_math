@@ -92,21 +92,9 @@ impl Mul<[f32; 3]> for Mat3 {
 
     fn mul(self, rhs: [f32; 3]) -> [f32; 3] {
         [
-            [
-                self.0[0][0] * rhs[0], 
-                self.0[0][0] * rhs[0], 
-                self.0[0][0] * rhs[0], 
-            ],
-            [
-            ],
-            [
-            ],
+            self.0[0][0] * rhs[0] + self.0[0][1] * rhs[1] + self.0[0][2] * rhs[2],
+            self.0[1][0] * rhs[0] + self.0[1][1] * rhs[1] + self.0[1][2] * rhs[2],
+            self.0[2][0] * rhs[0] + self.0[2][1] * rhs[1] + self.0[2][2] * rhs[2],
         ]
-    }
-}
-
-impl MulAssign<[f32; 3]> for Mat3 {
-    fn mul_assign(&mut self, rhs: [f32; 3]) {
-        *self = Self::mul(*self, rhs);
     }
 }
