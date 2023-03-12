@@ -17,6 +17,10 @@ impl Ortho {
             ],
         ])
     }
+
+    pub fn proj(&self, p: [f32; 2], z: f32, w: f32) -> [f32; 4] {
+        *self * [p[0], p[1], z, w]
+    }
 }
 
 impl Mul<[f32; 4]> for Ortho {
