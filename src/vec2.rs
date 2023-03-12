@@ -1,4 +1,7 @@
-use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
+use std::{
+    f32::consts::PI,
+    ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign},
+};
 
 #[derive(Default, PartialEq, PartialOrd, Copy, Clone)]
 pub struct Vec2(pub [f32; 2]);
@@ -49,7 +52,14 @@ impl Vec2 {
     }
 
     pub fn angle(&self, other: &Self) -> f32 {
-        (self.dot(other) / (self.magnitude() * other.magnitude())).acos()
+        let v = self.dot(other) / (self.magnitude() * other.magnitude());
+        let inv_cos = v.acos();
+
+        if v >= PI {
+            inv_cos + PI
+        } else {
+            inv_cos
+        }
     }
 
     pub fn normal(&self) -> Self {
