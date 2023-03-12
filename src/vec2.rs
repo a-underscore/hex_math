@@ -52,7 +52,7 @@ impl Vec2 {
     }
 
     pub fn angle(&self, other: &Self) -> f32 {
-        println!("{}", self.magnitude());
+        println!("{}", self.dot(other));
 
         let v = self.dot(other) / (self.magnitude() * other.magnitude());
         let angle = v.acos();
