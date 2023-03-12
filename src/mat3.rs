@@ -12,11 +12,10 @@ impl Default for Mat3 {
 
 impl Mat3 {
     pub fn rotation(rotation: f32) -> Self {
-        Self([
-            [rotation.cos(), rotation.sin(), 0.0],
-            [-rotation.sin(), rotation.cos(), 0.0],
-            [0.0, 0.0, 1.0],
-        ])
+        let sin = rotation.sin();
+        let cos = rotation.cos();
+
+        Self([[cos, -sin, 0.0], [sin, cos, 0.0], [0.0, 0.0, 1.0]])
     }
 
     pub fn scale(scale: Vec2) -> Self {

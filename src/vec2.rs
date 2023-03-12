@@ -49,7 +49,7 @@ impl Vec2 {
     }
 
     pub fn angle(&self, other: &Self) -> f32 {
-        self.dot(other) / (self.magnitude() * other.magnitude())
+        (self.dot(other) / (self.magnitude() * other.magnitude())).acos()
     }
 
     pub fn normal(&self) -> Self {
