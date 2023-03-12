@@ -1,4 +1,3 @@
-use crate::Vec2;
 use std::ops::Mul;
 
 #[derive(Default, Copy, Clone)]
@@ -17,10 +16,6 @@ impl Ortho {
                 1.0,
             ],
         ])
-    }
-
-    pub fn proj(&self, p: &Vec2, z: f32, w: f32) -> [f32; 4] {
-        *self * [p.x(), p.y(), z, w]
     }
 }
 
