@@ -8,6 +8,14 @@ impl Vec2 {
         Self([x, y])
     }
 
+    pub fn extend(&self) -> [f32; 3] {
+        [self.x(), self.y(), 1.0]
+    }
+
+    pub fn truncate(p: [f32; 3]) -> Self {
+        Self::new(p[0], p[1])
+    }
+
     pub fn x(&self) -> f32 {
         self.0[0]
     }
