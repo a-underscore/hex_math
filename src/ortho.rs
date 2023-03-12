@@ -32,15 +32,15 @@ impl Mul<[f32; 4]> for Ortho {
             self.0[0][0] * rhs[0]
                 + self.0[0][1] * rhs[1]
                 + self.0[0][2] * rhs[2]
-                + self.0[3][3] * rhs[3],
+                + self.0[0][3] * rhs[3],
             self.0[1][0] * rhs[0]
                 + self.0[1][1] * rhs[1]
                 + self.0[1][2] * rhs[2]
-                + self.0[3][3] * rhs[3],
+                + self.0[1][3] * rhs[3],
             self.0[2][0] * rhs[0]
                 + self.0[2][1] * rhs[1]
                 + self.0[2][2] * rhs[2]
-                + self.0[3][3] * rhs[3],
+                + self.0[2][3] * rhs[3],
             self.0[3][0] * rhs[0]
                 + self.0[3][1] * rhs[1]
                 + self.0[3][2] * rhs[2]
