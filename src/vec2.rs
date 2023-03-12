@@ -1,5 +1,5 @@
 use std::{
-    // f32::consts::PI,
+    f32::consts::PI,
     ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign},
 };
 
@@ -56,7 +56,7 @@ impl Vec2 {
         let angle = v.acos();
 
         if v <= 0.0 {
-            -angle
+            -angle + PI
         } else {
             angle
         }
