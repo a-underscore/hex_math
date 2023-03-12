@@ -97,7 +97,7 @@ impl Sub for Vec2 {
     type Output = Self;
 
     fn sub(self, rhs: Self) -> Self {
-        Self::add(self, rhs)
+        Self::add(self, -rhs)
     }
 }
 
