@@ -13,8 +13,8 @@ impl Default for Mat3 {
 impl Mat3 {
     pub fn rotation(rotation: f32) -> Self {
         Self([
-            [rotation.cos(), -rotation.sin(), 0.0],
-            [rotation.sin(), rotation.cos(), 0.0],
+            [rotation.cos(), rotation.sin(), 0.0],
+            [-rotation.sin(), rotation.cos(), 0.0],
             [0.0, 0.0, 1.0],
         ])
     }
