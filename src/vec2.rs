@@ -44,12 +44,16 @@ impl Vec2 {
         self.x() * rhs.x() + self.y() * rhs.y()
     }
 
+    pub fn det(&self, rhs: &Self) -> f32 {
+        self.x() * rhs.y() - self.y() * rhs.x()
+    }
+
     pub fn magnitude(&self) -> f32 {
         (self.x().powi(2) + self.y().powi(2)).sqrt()
     }
 
     pub fn angle(&self, other: &Self) -> f32 {
-        (self.dot(other) / (self.magnitude() * other.magnitude())).acos()
+        self.det(other).atan2(self.dot(other))
     }
 
     pub fn normal(&self) -> Self {

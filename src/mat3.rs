@@ -12,8 +12,7 @@ impl Default for Mat3 {
 
 impl Mat3 {
     pub fn rotation(rotation: f32) -> Self {
-        let sin = rotation.sin();
-        let cos = rotation.cos();
+        let (sin, cos) = rotation.sin_cos();
 
         Self([[cos, -sin, 0.0], [sin, cos, 0.0], [0.0, 0.0, 1.0]])
     }
