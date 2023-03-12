@@ -1,10 +1,39 @@
+use super::Vec2;
 use std::ops::{Div, DivAssign, Mul, MulAssign};
 
-#[derive(Default, Copy, Clone)]
+#[derive(Copy, Clone)]
 pub struct Mat3(pub [[f32; 3]; 3]);
 
+impl Default for Mat3 {
+    fn default() -> Self {
+        Self([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]])
+    }
+}
+
 impl Mat3 {
-    // pub fn transform(pos: [f32; 3], rotation: f32, scale: [f32; 3]) -> Self {}
+    pub fn rotation(rotation: f32) -> Self {
+        Self([
+            [rotation.cos(), -rotation.sin(), 0.0],
+            [rotation.sin(), rotation.cos(), 0.0],
+            [0.0, 0.0, 1.0],
+        ])
+    }
+
+    pub fn scale(scale: Vec2) -> Self {
+        Self([
+            [scale.x(), 0.0, 0.0],
+            [0.0, scale.y(), 0.0],
+            [0.0, 0.0, 1.0],
+        ])
+    }
+
+    pub fn translation(translation: Vec2) -> Self {
+        Self([
+            [1.0, 0.0, translation.x()],
+            [0.0, 1.0, translation.y()],
+            [0.0, 0.0, 1.0],
+        ])
+    }
 }
 
 impl Mul<f32> for Mat3 {
@@ -87,14 +116,14 @@ impl MulAssign for Mat3 {
     }
 }
 
-impl Mul<[f32; 3]> for Mat3 {
+impl Mul<Vec2> for Mat3 {
     type Output = [f32; 3];
 
-    fn mul(self, rhs: [f32; 3]) -> [f32; 3] {
+    fn mul(self, rhs: Vec2) -> [f32; 3] {
         [
-            self.0[0][0] * rhs[0] + self.0[0][1] * rhs[1] + self.0[0][2] * rhs[2],
-            self.0[1][0] * rhs[0] + self.0[1][1] * rhs[1] + self.0[1][2] * rhs[2],
-            self.0[2][0] * rhs[0] + self.0[2][1] * rhs[1] + self.0[2][2] * rhs[2],
+            self.0[0][0] * rhs.x() + self.0[0][1] * rhs.y() + self.0[0][2],
+            self.0[1][0] * rhs.x() + self.0[1][1] * rhs.y() + self.0[1][2],
+            self.0[2][0] * rhs.x() + self.0[2][1] * rhs.y() + self.0[2][2],
         ]
     }
 }
