@@ -1,3 +1,4 @@
+use crate::Vec2;
 use std::ops::Mul;
 
 #[derive(Default, Copy, Clone)]
@@ -19,27 +20,23 @@ impl Ortho {
     }
 }
 
-impl Mul<[f32; 4]> for Ortho {
-    type Output = [f32; 4];
+impl Mul<(Vec2, f32, f32)> for Ortho {
+    type Output = (Vec2, f32, f32);
 
-    fn mul(self, rhs: [f32; 4]) -> [f32; 4] {
-        [
-            self.0[0][0] * rhs[0]
-                + self.0[0][1] * rhs[1]
-                + self.0[0][2] * rhs[2]
-                + self.0[0][3] * rhs[3],
-            self.0[1][0] * rhs[0]
-                + self.0[1][1] * rhs[1]
-                + self.0[1][2] * rhs[2]
-                + self.0[1][3] * rhs[3],
-            self.0[2][0] * rhs[0]
-                + self.0[2][1] * rhs[1]
-                + self.0[2][2] * rhs[2]
-                + self.0[2][3] * rhs[3],
-            self.0[3][0] * rhs[0]
-                + self.0[3][1] * rhs[1]
-                + self.0[3][2] * rhs[2]
-                + self.0[3][3] * rhs[3],
-        ]
+    fn mul(self, (rhs, z, w): (Vec2, f32, f32)) -> (Vec2, f32, f32) {
+        (
+            Vec2::new(
+                self.0[0][0] * rhs.x()
+                    + self.0[0][1] * rhs.y()
+                    + self.0[0][2] * z
+                    + self.0[0][3] * w,
+                self.0[1][0] * rhs.x()
+                    + self.0[1][1] * rhs.y()
+                    + self.0[1][2] * z
+                    + self.0[1][3] * w,
+            ),
+            self.0[2][0] * rhs.x() + self.0[2][1] * rhs.y() + self.0[2][2] * z + self.0[2][3] * w,
+            self.0[3][0] * rhs.x() + self.0[3][1] * rhs.y() + self.0[3][2] * z + self.0[3][3] * w,
+        )
     }
 }
