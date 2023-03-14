@@ -8,11 +8,11 @@ impl Vec2 {
         Self([x, y])
     }
 
-    pub fn x(&self) -> f32 {
+    pub fn x(self) -> f32 {
         self.0[0]
     }
 
-    pub fn y(&self) -> f32 {
+    pub fn y(self) -> f32 {
         self.0[1]
     }
 
@@ -32,24 +32,24 @@ impl Vec2 {
         &mut self.0[1]
     }
 
-    pub fn dot(&self, rhs: &Self) -> f32 {
+    pub fn dot(self, rhs: Self) -> f32 {
         self.x() * rhs.x() + self.y() * rhs.y()
     }
 
-    pub fn det(&self, rhs: &Self) -> f32 {
+    pub fn det(self, rhs: Self) -> f32 {
         self.x() * rhs.y() - self.y() * rhs.x()
     }
 
-    pub fn magnitude(&self) -> f32 {
+    pub fn magnitude(self) -> f32 {
         (self.x().powi(2) + self.y().powi(2)).sqrt()
     }
 
-    pub fn angle(&self, other: &Self) -> f32 {
+    pub fn angle(self, other: Self) -> f32 {
         self.det(other).atan2(self.dot(other))
     }
 
-    pub fn normal(&self) -> Self {
-        *self / self.magnitude()
+    pub fn normal(self) -> Self {
+        self / self.magnitude()
     }
 }
 
